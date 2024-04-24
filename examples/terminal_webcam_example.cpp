@@ -2,6 +2,8 @@
 #include <opencv2/opencv.hpp>
 #include "ftxui/screen/screen.hpp"
 #include "ftxui/screen/color.hpp"
+#include "terminal_webcam/drawer.hpp"
+#include "terminal_webcam/image.hpp"
 
 int main(int, char**) {
     // open the first webcam plugged in the computer
@@ -12,9 +14,8 @@ int main(int, char**) {
     }
 
     const ftxui::Dimensions dimensions{ftxui::Dimension::Full()};
-    ftxui::Screen screen{ftxui::Screen::Create(dimensions)};
-
-    std::cout<<"Terminal full screen size: "<< dimensions.dimx<<" X "<< dimensions.dimy<<std::endl;
+    terminal_webcam::Drawer drawer{dimensions};
+    std::cout<<"Terminal size: "<< dimensions.dimx << "X"<<dimensions.dimy<<std::endl;
 
     // create a window to display the images from the webcam
     cv::namedWindow("Webcam", cv::WINDOW_AUTOSIZE);
@@ -26,12 +27,13 @@ int main(int, char**) {
     while (1) {
         // capture the next frame from the webcam
         camera >> frame;
-        // show the image on the window
-        cv::resize(frame, frame, cv::Size(static_cast<int>(dimensions.dimx), static_cast<int>(dimensions.dimy)), cv::INTER_LINEAR);
-        cv::imshow("Webcam", frame);
-        // wait (10ms) for esc key to be pressed to stop
-        if (cv::waitKey(10) == 27)
-            break;
+        //Resize the image to the terminal size
+        cv::resize(frame, frame, cv::Size(static_cast<int>(ftxui::Dimension::Full().dimx), static_cast<int>(ftxui::Dimension::Full().dimy)), cv::INTER_LINEAR);
+
+        terminal_webcam::Image image(frame);
+        drawer.Set(image);
+        drawer.Draw();
+        drawer.Clear();
     }
     return 0;
 }

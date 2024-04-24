@@ -1,6 +1,7 @@
 #pragma once
-#include "ftxui/screen/color.hpp"
 #include <vector>
+#include <opencv2/opencv.hpp>
+#include "ftxui/screen/color.hpp"
 
 namespace terminal_webcam {
 struct Size {
@@ -17,6 +18,9 @@ private:
 
 public:
   Image() = default;
+
+  Image(cv::Mat& size);
+
   Image(const terminal_webcam::Size size);
   // Move constructor
   Image(Image &&other_image);

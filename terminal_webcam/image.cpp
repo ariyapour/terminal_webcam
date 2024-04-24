@@ -1,8 +1,24 @@
 #include "terminal_webcam/image.hpp"
+#include <opencv2/core/types.hpp>
+
+terminal_webcam::Image::Image(cv::Mat& image)
+:rows_{image.rows}, cols_{image.cols}, channels_{image.channels()}{
+  image_data_.resize(rows_ * cols_ * channels_, ftxui::Color{});
+  //Set the image data
+  for (int i = 0; i < rows_; i++)
+  {
+    for (int j = 0; j < cols_; j++)
+    {
+      auto color = image.at<cv::Vec3b>(i,j);
+      image_data_.at(channels_ * (i * cols_ + j)) = ftxui::Color{color[0], color[1], color[2]};
+    }
+  }
+}
+
 
 terminal_webcam::Image::Image(terminal_webcam::Size size)
     : rows_{size.rows}, cols_{size.cols}{
-      image_data_.resize(size.rows * size.cols * channels_, ftxui::Color{});
+      image_data_.resize(rows_ * cols_ * channels_, ftxui::Color{});
 };
 
 terminal_webcam::Image::Image(const int rows, const int cols)

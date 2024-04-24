@@ -17,6 +17,7 @@ public:
   const terminal_webcam::Size size() const;
   void Set(terminal_webcam::Image image);
   void Draw() const;
+  void Clear();
   std::string ToString() const;
 };
 } // namespace pixelator

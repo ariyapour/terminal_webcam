@@ -42,6 +42,12 @@ void terminal_webcam::Drawer::Draw() const {
   return;
 }
 
+void terminal_webcam::Drawer::Clear() {
+  //Clear the screen and reset the cursor position
+  std::cout<< screen_.ResetPosition();
+  return;
+}
+
 std::string terminal_webcam::Drawer::ToString() const {
   std::string string_image = screen_.ToString();
 
