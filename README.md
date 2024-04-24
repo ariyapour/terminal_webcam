@@ -4,7 +4,7 @@ Webcam in Terminal
 
 ## Description
 
-Terminal webcam is an webcam application for terminal. It resizes the input image from webcam and draws the pixelated image in the terminal.
+Webcam for terminal. It resizes the input image from webcam and draws the pixelated image in the terminal.
 
 ## Getting Started
 
