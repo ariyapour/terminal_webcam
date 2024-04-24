@@ -31,4 +31,6 @@ cmake --build build -j 8
 ./build/examples/terminal_webcam_example
 ```
 
-## License
+### TODO
+* Resize input image while keeping its aspect ratio
+* Look for terminal window resize event. In such events update the drawer class to draw images in new terminal size.
