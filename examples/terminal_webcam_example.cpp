@@ -25,6 +25,8 @@ int main(int, char **) {
 
   // display the frame until you press a key
   while (1) {
+    //Make sure to resize drawer if the terminal is resized
+    drawer.update_drawer_to_full_size();
     // capture the next frame from the webcam
     camera >> frame;
     // Resize the image to the terminal size

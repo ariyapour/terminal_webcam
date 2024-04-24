@@ -26,6 +26,20 @@ int terminal_webcam::Drawer::chars_in_y() const {
   return number_of_chars_for_pixels_y_;
 }
 
+void terminal_webcam::Drawer::update_drawer_to_full_size(){
+  // Clear the previous data
+  std::cout << "\033[H\033[2J\033[3J" ;
+
+  if (rows_ != ftxui::Dimension::Full().dimx ||
+      cols_ != ftxui::Dimension::Full().dimy) {
+        
+      rows_ = ftxui::Dimension::Full().dimx;
+      cols_ = ftxui::Dimension::Full().dimy;
+
+    screen_ = ftxui::Screen::Create({rows_, cols_});
+  }
+}
+
 const terminal_webcam::Size terminal_webcam::Drawer::size() const {
   return terminal_webcam::Size{rows_, cols_};
 }
@@ -57,6 +71,7 @@ void terminal_webcam::Drawer::Draw() const {
 
 void terminal_webcam::Drawer::Clear() {
   // Clear the screen and reset the cursor position
+  screen_.Clear();
   std::cout << screen_.ResetPosition();
   return;
 }

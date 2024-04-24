@@ -33,4 +33,5 @@ cmake --build build -j 8
 
 ### TODO
 * Resize input image while keeping its aspect ratio [✔]
-* Look for terminal window resize event. In such events update the drawer to draw images in new terminal size.
+* Look for terminal window resize event. In such events update the drawer to draw images in new terminal size. [✔]
+* Add google tests
