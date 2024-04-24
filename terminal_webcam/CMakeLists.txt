@@ -11,6 +11,8 @@ target_link_libraries(image PUBLIC cxx_setup ftxui::screen)
 add_library(drawer drawer.cpp)
 target_link_libraries(drawer PUBLIC cxx_setup ftxui::screen image)
 
+add_library(utils INTERFACE)
+target_link_libraries(utils INTERFACE ${OpenCV_LIBS})
 
 if(BUILD_TESTING)
   # TODO: Add your tests executable with all your tests here
