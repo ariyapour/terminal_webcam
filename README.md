@@ -6,6 +6,8 @@ Webcam in Terminal
 
 Webcam for terminal. It resizes the input image from webcam and draws the pixelated image in the terminal.
 
+![webcam_pixelated](https://github.com/ariyapour/terminal_webcam/assets/7849979/e4d9ec7b-9763-4f65-a0f6-0ad8c0eb385a)
+
 ## Getting Started
 
 ### Dependencies
