@@ -17,6 +17,10 @@ int terminal_webcam::webcam::show(int camera_index){
     {
         drawer_.update_drawer_to_full_size();
         camera >> frame;
+        if (frame.empty()) {
+            std::cerr << "Error: Unable to capture frame" << std::endl;
+            break;
+        }
         frame =  terminal_webcam::utils::resizeAndFillBorders(
             frame, drawer_.rows(), drawer_.cols(),
             cv::Scalar(0, 0, 0), drawer_.chars_in_x(), drawer_.chars_in_y());
