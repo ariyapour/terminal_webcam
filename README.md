@@ -1,6 +1,6 @@
 # Project Title
 
-Webcam in Terminal
+Webcam in Terminal. The idea of webcam terminal was implemented based on the work done in the [Full C++17 course](https://www.youtube.com/playlist?list=PLwhKb0RIaIS1sJkejUmWj-0lk7v_xgCuT) by [Code for yourself](https://www.youtube.com/@CodeForYourself).
 
 ## Description
 
@@ -32,3 +32,4 @@ cmake --build build -j 8
 ```
 ./build/examples/terminal_webcam_example
 ```
+
