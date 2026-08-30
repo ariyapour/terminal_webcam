@@ -4,7 +4,10 @@ Webcam in Terminal. The idea of webcam terminal was implemented based on the wor
 
 ## Description
 
-Webcam for terminal. It resizes the input image from webcam and draws the pixelated image in the terminal.
+Webcam for terminal. It resizes the input image from the webcam to the terminal window.
+
+- In **Kitty**, the feed is drawn as a high-resolution image using the [Kitty graphics protocol](https://sw.kovidgoyal.net/kitty/graphics-protocol/) (the same mechanism as `kitten icat`, without spawning icat per frame).
+- In other terminals, it falls back to a pixelated view made of colored background cells.
 
 ![webcam_pixelated](https://github.com/ariyapour/terminal_webcam/assets/7849979/e4d9ec7b-9763-4f65-a0f6-0ad8c0eb385a)
 
@@ -28,8 +31,13 @@ cmake --build build -j 8
 
 ### Executing program
 
-* To run the program you need a webcam. In the root directory of the project run the following command to display webcam feed in terminal.
+* To run the program you need a webcam. From the project root:
+
 ```
 ./build/examples/terminal_webcam_example
 ```
+
+In Kitty (`TERM=xterm-kitty` or `KITTY_WINDOW_ID` set, with a non-zero pixel window size), you get a high-resolution image that follows the window size. Elsewhere you get the pixelated cell renderer.
+
+Press Ctrl-C to quit. In Kitty this also removes the image and restores the cursor.
 

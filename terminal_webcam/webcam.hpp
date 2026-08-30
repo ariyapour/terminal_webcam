@@ -1,14 +1,15 @@
 #pragma once
-#include "terminal_webcam/drawer.hpp"
-#include "ftxui/screen/screen.hpp"
-#include <opencv2/opencv.hpp>
-namespace terminal_webcam{
-    class webcam
-    {
-    private:
-        terminal_webcam::Drawer drawer_{ftxui::Dimension::Full()};
-    public:
-        webcam() = default;
-        int show(int camera_index = 0);
-    };
-}
+
+namespace terminal_webcam {
+
+// Captures from a camera and draws frames in the terminal: Kitty graphics
+// when available, otherwise the FTXUI cell-based (pixelated) renderer.
+class webcam {
+public:
+  webcam() = default;
+  // Open camera_index (default 0) and run until SIGINT/SIGTERM or a capture
+  // error. Returns 1 if the camera cannot be opened, otherwise 0.
+  int show(int camera_index = 0);
+};
+
+} // namespace terminal_webcam
